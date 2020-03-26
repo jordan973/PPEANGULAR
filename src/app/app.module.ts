@@ -14,6 +14,16 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { MajMedecinComponent } from './maj-medecin/maj-medecin.component';
 import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.component';
 
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes : Routes = [
+  { path: 'accueil', component: MonAccueilComponent },
+  { path: 'auth', component: AuthentificationComponent },
+  { path: 'mes-visites', component: MonVisiteurComponent },
+  { path: 'medecin', component: MonMedecinComponent },
+  { path: 'medicament', component: MonMedicamentComponent },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +40,8 @@ import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]

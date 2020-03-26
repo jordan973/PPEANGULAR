@@ -1,2 +1,17 @@
-<h1>GSBCR-ANGULAR</h1>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="accueil">Gestion des visites et des médecins</a></li>
+        <li routerLinkActive="active"><a routerLink="auth">Connexion</a></li>
+        <li routerLinkActive="active"><a routerLink="mes-visites">Mes visites</a></li>
+        <li routerLinkActive="active"><a routerLink="medecin">Médecin</a></li>
+        <li routerLnkActive="active"><a routerLink="medicament">Médicament</a></li>  
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
