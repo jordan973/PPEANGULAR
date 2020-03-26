@@ -14,4 +14,6 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-  
+  <h1>Voici la liste des visiteurs</h1>
+  <app-mon-accueil *ngFor="let visiteur of visiteurs" [vNom]="visiteur.nom" [vPrenom]="visiteur.prenom" [vAdresse]="visiteur.adresse" [vLogin]="visiteur.login"></app-mon-accueil>
+<button (click)= 'showVisiteur()'>Affihcer les visiteurs</button>
