@@ -13,6 +13,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { MajMedecinComponent } from './maj-medecin/maj-medecin.component';
 import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.component';
 import { Services } from './services/monService';
+import { MedecinServices } from './services/MedecinService';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -44,7 +45,8 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
-    Services
+    Services,
+    MedecinServices,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,1 +1,28 @@
-<p>mon-medecin works!</p>
+<div class="container">
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <h1>Voici la liste des medecins</h1>
+<button (click)= 'showmedecin()'>Afficher les medecins</button>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>Nom</th>
+    <th>Prenom</th>
+    <th>Ville</th>
+    <th>Adresse</th>
+    <th>Code postal</th>
+</tr>
+</thead>
+
+<tbody>
+<tr *ngFor= "let medecin of medecins">
+<td>{{medecin.nom}} </td>
+<td>{{medecin.prenom}} </td>
+<td>{{medecin.ville}} </td>
+<td>{{medecin.adresse}} </td>
+<td>{{medecin.cp}} </td>
+</tr>
+</tbody>
+</table>
