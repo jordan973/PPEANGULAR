@@ -15,6 +15,7 @@ import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.co
 import { Services } from './services/monService';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { MedicamentService } from './services/MedicamentService';
 
 const appRoutes : Routes = [
   { path: 'accueil', component: MonAccueilComponent },
@@ -44,7 +45,9 @@ const appRoutes : Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   providers: [
-    Services
+    Services,
+    MedicamentService,
+    
   ],
   bootstrap: [AppComponent]
 })

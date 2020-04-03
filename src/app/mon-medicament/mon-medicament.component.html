@@ -1,1 +1,3 @@
-<p>mon-medicament works!</p>
+<h1>Voici la liste des médicaments</h1>
+  <app-mon-medicament *ngFor="let medicament of medicaments" [mNomCommercial]="medicament.nomCommercial" [mFamille]="medicament.idFamille" [mComposition]="medicament.composition" [mEffets]="medicament.effets" [mContreIndications]="medicament.conTreIndications"></app-mon-medicament>
+<button (click)= 'showMedicament()'>Afficher les médicaments</button>
