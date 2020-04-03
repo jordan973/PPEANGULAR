@@ -17,7 +17,7 @@ export class MedecinServices{
     constructor(private httpClient: HttpClient){}
 
     getmedecinFromServer(){
-        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/').subscribe(
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?noms').subscribe(
             (reponse) => {
                 this.medecins = reponse;
                 this.emitmedecinSubject();
