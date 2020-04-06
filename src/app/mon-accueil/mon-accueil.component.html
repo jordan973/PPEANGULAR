@@ -1,1 +1,1 @@
-<p>Nom : {{vNom}} -- Prénom : {{vPrenom}} -- Adresse: {{vAdresse}} -- Login : {{vLogin}} </p>
+<p *ngFor = "let user of user;">Bienvenue sur l'application GSB {{user.nom}} {{user.prenom}}</p>

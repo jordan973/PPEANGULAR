@@ -4,24 +4,24 @@ import { Subject } from 'rxjs';
 
 
 @Injectable()
-export class MedecinServices{
-    medecinSubject = new Subject<any[]>();
+export class MainService{
 
+    medecinSubject = new Subject<any[]>();
     private medecins : any[];
+
+    constructor(private httpClient: HttpClient){}
 
 
     emitmedecinSubject(){
         this.medecinSubject.next(this.medecins.slice());
     }
-
-    constructor(private httpClient: HttpClient){}
-
-    getmedecinFromServer(){
-        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?noms').subscribe(
+    getmedecinFromServer(nom){
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?noms='+nom).subscribe(
             (reponse) => {
                 this.medecins = reponse;
                 this.emitmedecinSubject();
             }
         )
     }
+
 }

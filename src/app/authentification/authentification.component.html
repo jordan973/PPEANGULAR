@@ -1,1 +1,21 @@
-<p>authentification works!</p>
+
+<!-- <div *ngIf = '!isShow'>This is a div which toggles.</div>
+<button (click) = 'toggleDisplay()'>Toggle</button> -->
+
+<div class="col-sm-8">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input formControlName="login" type="text" id="login" name="login" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="mdp">Mot de passe</label>
+      <input formControlName="mdp" type="password" id="mdp" name="mdp" class="form-control">
+    </div>
+  
+    <div class="center" style="text-align: center;">
+      <button class="btn btn-outline-primary" type="submit" [disabled]="loginForm.invalid">Connexion</button>
+    </div>
+    <!-- <div *ngFor="let user of users">{{user.login}} {{user.prenom}} {{user.nom}}</div> -->
+  </form>
+</div>
