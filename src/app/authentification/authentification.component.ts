@@ -11,9 +11,10 @@ import { User } from "../models/user.model";
 })
 export class AuthentificationComponent implements OnInit {
   loginForm: FormGroup;
-  private user: User[];
-  
-  
+  private user: User[];  
+  isAuth: boolean;
+  error;
+
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
               private route: Router){}
@@ -34,10 +35,10 @@ export class AuthentificationComponent implements OnInit {
     const formValue = this.loginForm.value;
     
     this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
-      console.log('login ='+ user[0].login);
+      this.error = user;
+      console.log('login ='+ user);
+      this.isAuth = this.authService.isAuth;
       this.route.navigate(['accueil']);
-
-      
     });
   }
 }

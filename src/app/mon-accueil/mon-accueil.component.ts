@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class MonAccueilComponent implements OnInit {
   user: any[];
+  logoGSB: any = '../assets/images/logoGSB.jpg';
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

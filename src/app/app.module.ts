@@ -29,8 +29,11 @@ const appRoutes : Routes = [
   { path: 'accueil', canActivate: [AuthGuard],component: MonAccueilComponent },
   { path: 'auth', component: AuthentificationComponent },
   { path: 'mes-visites',canActivate: [AuthGuard], component: MonVisiteurComponent },
+  { path: 'ajouter-rapport',component: AjouterRapportComponent },
+  { path: 'modifier-rapport', component: ModifierRapportComponent },
   { path: 'medecin',canActivate: [AuthGuard], component: MonMedecinComponent },
   { path: 'medicament',canActivate: [AuthGuard], component: MonMedicamentComponent },
+
 ];
 
 @NgModule({
@@ -45,7 +48,7 @@ const appRoutes : Routes = [
     AuthentificationComponent,
     MajMedecinComponent,
     ModifierRapportComponent,
-    Error404Component
+    Error404Component,
   ],
   imports: [
     BrowserModule,

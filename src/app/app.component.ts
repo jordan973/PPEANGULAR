@@ -10,6 +10,7 @@ import { AuthService } from './services/auth.service';
 
 export class AppComponent implements OnInit {
   authStatus: boolean;
+
   constructor(private authService: AuthService,
               private route: Router) { }
 
@@ -22,8 +23,5 @@ export class AppComponent implements OnInit {
     console.log("Déconnexion réussie");
     this.authService.signOut();
     this.route.navigate(['auth']);
-
   }
-
-  
 }

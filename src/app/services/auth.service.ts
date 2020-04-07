@@ -7,8 +7,6 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class AuthService{
   userSubject = new Subject<any[]>();
-
-    
   isAuth = false;
   user: User[] = [];
 
@@ -18,12 +16,19 @@ export class AuthService{
     return new Promise((resolve, reject) => {
       this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?login='+login).subscribe(
         authData => {
-          if(login === authData[0].login && mdp === authData[0].mdp){
-            let login = authData[0].login;
-            let mdp = authData[0].mdp;
-            this.user.push(authData[0]);
-            this.isAuth = true;
-            resolve(this.user);
+          if(authData[0] !== undefined)
+          {
+            if(login === authData[0].login && mdp === authData[0].mdp){
+              this.user.push(authData[0]);
+              this.isAuth = true;
+              resolve(this.user[0]);
+            }
+            else{
+              resolve("Le mot de passe est incorrect !");
+            }
+          }
+          else{
+            resolve("Votre identifiant n'est pas reconnu !");
           }
         });
       });

@@ -9,9 +9,9 @@
     <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
       <table class="table">
         <thead class="thead-dark">
-            <tr>
-              <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
-            </tr>
+          <tr>
+            <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
+          </tr>
         </thead>
         <tbody *ngFor= "let medecin of medecins">
           <td>{{medecin.nom}} </td>
@@ -19,7 +19,7 @@
           <td>{{medecin.tel}} </td>
           <td>{{medecin.adresse}} </td>
           <td>{{medecin.departement}} </td>
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
   </div>
+</div>
