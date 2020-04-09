@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-voir-medicament',
@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./voir-medicament.component.css']
 })
 export class VoirMedicamentComponent implements OnInit {
+  @Input() mNomCommercial: string;
+  @Input() mFamille: string;
+  @Input() mComposition: string;
+  @Input() mEffets: string;
+  @Input() mContreIndications: string;
 
   constructor() { }
 

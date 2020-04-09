@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class MedicamentService{
     medicamentSubject = new Subject<any[]>();
 
-    private medicaments: any[];
+    medicaments: any[];
 
     emitMedicamentSubject(){
         this.medicamentSubject.next(this.medicaments.slice());
