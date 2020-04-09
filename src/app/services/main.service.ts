@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class MainService{
 
     medecinSubject = new Subject<any[]>();
-    medecins : any[];
+    private medecins : any[];
 
     constructor(private httpClient: HttpClient){}
 
@@ -20,17 +20,17 @@ export class MainService{
     getmedecinFromServer(nom){
         this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?noms='+nom).subscribe(
             (reponse) => {
-                this.medecins.push(reponse);
+                this.medecins = (reponse);
                 this.emitmedecinSubject();
             }
         )
     }
 
-    // Ajoute un rapport avec les informations passés en paramètres
-    ajoutRapport(date,motif,bilan,idVisiteur,idMedecin) {
-        return new Promise((resolve, reject) => {
-            this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?ajoutRapport='+date+"&"+motif+"&"+bilan+"&"+idVisiteur+"&"+idMedecin).subscribe();
-            resolve("L'ajout dans la base de donnée à bien fonctionné");
-        });
-    }
+    // // Ajoute un rapport avec les informations passés en paramètres
+    // ajoutRapport(date,motif,bilan,idVisiteur,idMedecin) {
+    //     return new Promise((resolve, reject) => {
+    //         this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?ajoutRapport='+date+"&"+motif+"&"+bilan+"&"+idVisiteur+"&"+idMedecin).subscribe();
+    //         resolve("L'ajout dans la base de donnée à bien fonctionné");
+    //     });
+    // }
 }

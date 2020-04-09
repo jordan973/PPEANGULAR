@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './ajouter-rapport.component.html',
   styleUrls: ['./ajouter-rapport.component.css']
 })
-export class AjouterRapportComponent implements OnInit {
+export class AjouterRapportComponent  {
 
   ajoutForm: FormGroup;
   nomMedecin = '';
@@ -51,10 +51,10 @@ export class AjouterRapportComponent implements OnInit {
     const motif = formValue.motif;
     const bilan = formValue.bilan;
 
-    this.mainService.ajoutRapport(date,motif,bilan,this.idVisiteur,this.idMedecin).then(error =>{
-      console.log('Le rapport à bien été ajouté dans la base de données');
-      this.router.navigate(['mes-visites']);
-    })
+    // this.mainService.ajoutRapport(date,motif,bilan,this.idVisiteur,this.idMedecin).then(error =>{
+    //   console.log('Le rapport à bien été ajouté dans la base de données');
+    //   this.router.navigate(['mes-visites']);
+    // })
   }
 
 }
