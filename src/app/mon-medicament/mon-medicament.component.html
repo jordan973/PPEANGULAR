@@ -14,11 +14,12 @@
           </tr>
         </thead>
         <tbody *ngFor= "let medicament of medicaments">
-          <td>{{medicament.nom}} </td>
-          <td>{{medicament.prenom}} </td>
-          <td>{{medicament.tel}} </td>
-          <td>{{medicament.adresse}} </td>
-          <td>{{medicament.departement}} </td>
+          <td>{{medicament.id}} </td>
+          <td>{{medicament.nomCommercial}} </td>
+          <td>{{medicament.idFamille}} </td>
+          <td>{{medicament.composition}} </td>
+          <td>{{medicament.effets}} </td>
+          <td>{{medicament.contreIndications}} </td>
       </tbody>
     </table>
   </div>

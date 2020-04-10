@@ -23,17 +23,12 @@
                     </tr>
                   </thead>
                   <tbody *ngFor= "let rapport of rapports">
-                    <td>{{rapport.id}} </td>
-                    <td>{{rapport.date}} </td>
-                    <td>{{rapport.motif}} </td>
-                    <td>{{rapport.bilan}} </td>
-                    <td>{{rapport.idVisiteur}} </td>
-                    <td>{{rapport.idMedecin}} </td>
-
-
-
-
-
+                    <td>{{rapport[0].id}} </td>
+                    <td>{{rapport[0].date}} </td>
+                    <td>{{rapport[0].motif}} </td>
+                    <td>{{rapport[0].bilan}} </td>
+                    <td>{{rapport[0].idVisiteur}} </td>
+                    <td>{{rapport[0].idMedecin}} </td>
                 </tbody>
               </table>
             </div>

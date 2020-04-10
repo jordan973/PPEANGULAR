@@ -28,7 +28,6 @@ export class MonVisiteurComponent implements OnInit {
     );
     this.mainService.getLesRapports();
     console.log(this.mainService.mesRapports);
-      // this.getLesRapports();
 
   }
   annuler(){
@@ -44,12 +43,4 @@ export class MonVisiteurComponent implements OnInit {
     this.formModifierRapport = true;
     this.formAjoutRapport = false;
   }
-
-  // getLesRapports(){
-  //   // this.rapports = this.mainService.getLesRapports();
-  //   this.mainService.getLesRapports();
-    
-  // }
-
-
 }

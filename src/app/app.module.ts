@@ -22,6 +22,7 @@ import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.co
 import { MainService } from './services/main.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard';
+import { MedicamentService } from './services/MedicamentService';
 
 
 const appRoutes : Routes = [
@@ -59,7 +60,8 @@ const appRoutes : Routes = [
   providers: [
     MainService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    MedicamentService,
   ],
   bootstrap: [AppComponent]
 })

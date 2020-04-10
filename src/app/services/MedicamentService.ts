@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class MedicamentService{
     medicamentSubject = new Subject<any[]>();
-    private medicaments: any[];
+    medicaments: any[];
 
     constructor(private httpClient: HttpClient){}
 

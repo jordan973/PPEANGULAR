@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class MonMedicamentComponent implements OnInit {
 
   medicaments: any[];
-  headElements = ['nom','prenom','téléphone','adresse','département'];
+  headElements = ['id','nomCommercial','idFamille','composition','effets','contreIndications'];
 
   medicamentSubscription: Subscription;
   constructor(private medicamentService: MedicamentService){}
