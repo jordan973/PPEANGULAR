@@ -1,4 +1,6 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-mon-accueil',
@@ -6,14 +8,14 @@ import { Component,Input, OnInit } from '@angular/core';
   styleUrls: ['./mon-accueil.component.css']
 })
 export class MonAccueilComponent implements OnInit {
-  @Input() vNom: string;
-  @Input() vPrenom: string;
-  @Input() vAdresse: string;
-  @Input() vLogin: string;
+  user: any[];
+  logoGSB: any = '../assets/images/logoGSB.jpg';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.user = this.authService.user;
+    
   }
 
 }
