@@ -4,12 +4,39 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-            <button routerLink="modifier-rapport" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Modifier un rapport</button>
-        </div> -->
+            <button (click)="modifierRapport()" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Modifier un rapport</button>
+        </div>
         <div class="col-sm-6">
-            <a routerLink="ajouter-rapport">
-                <button routerLink="ajouter-rapport" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un rapport</button>
-            </a> 
+            <button (click)="ajouterRapport()" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un rapport</button>
+        </div>
+    </div>
+    <app-ajouter-rapport *ngIf="formAjoutRapport"></app-ajouter-rapport>
+    <app-modifier-rapport *ngIf="formModifierRapport"></app-modifier-rapport>
+    <button class="btn btn-danger" *ngIf="formModifierRapport || formAjoutRapport" (click)="annuler()">Retour à la liste</button>
+    <div class="row" *ngIf="!formAjoutRapport && !formModifierRapport">
+        <div class="col-md-12">
+            <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor= "let rapport of rapports">
+                    <td>{{rapport.id}} </td>
+                    <td>{{rapport.date}} </td>
+                    <td>{{rapport.motif}} </td>
+                    <td>{{rapport.bilan}} </td>
+                    <td>{{rapport.idVisiteur}} </td>
+                    <td>{{rapport.idMedecin}} </td>
+
+
+
+
+
+                </tbody>
+              </table>
+            </div>
         </div>
     </div>
 </div>

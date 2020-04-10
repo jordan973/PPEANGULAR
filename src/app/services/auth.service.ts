@@ -21,7 +21,7 @@ export class AuthService{
             if(login === authData[0].login && mdp === authData[0].mdp){
               this.user.push(authData[0]);
               this.isAuth = true;
-              resolve(this.user[0]);
+              resolve(this.user[0].id);
             }
             else{
               resolve("Le mot de passe est incorrect !");

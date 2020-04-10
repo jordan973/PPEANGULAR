@@ -17,7 +17,6 @@ import { MonAccueilComponent } from './mon-accueil/mon-accueil.component';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { MajMedecinComponent } from './maj-medecin/maj-medecin.component';
 import { ModifierRapportComponent } from './modifier-rapport/modifier-rapport.component';
-import { Error404Component } from './error404/error404.component';
 
 
 import { MainService } from './services/main.service';
@@ -29,8 +28,8 @@ const appRoutes : Routes = [
   { path: 'accueil', canActivate: [AuthGuard],component: MonAccueilComponent },
   { path: 'auth', component: AuthentificationComponent },
   { path: 'mes-visites',canActivate: [AuthGuard], component: MonVisiteurComponent },
-  { path: 'ajouter-rapport',component: AjouterRapportComponent },
-  { path: 'modifier-rapport', component: ModifierRapportComponent },
+  { path: 'mes-visites/ajouter-rapport',component: AjouterRapportComponent },
+  { path: 'mes-visites/modifier-rapport', component: ModifierRapportComponent },
   { path: 'medecin',canActivate: [AuthGuard], component: MonMedecinComponent },
   { path: 'medicament',canActivate: [AuthGuard], component: MonMedicamentComponent },
 
@@ -48,7 +47,6 @@ const appRoutes : Routes = [
     AuthentificationComponent,
     MajMedecinComponent,
     ModifierRapportComponent,
-    Error404Component,
   ],
   imports: [
     BrowserModule,

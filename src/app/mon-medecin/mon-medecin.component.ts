@@ -15,26 +15,26 @@ export class MonMedecinComponent implements OnInit {
   headElements = ['nom','prenom','téléphone','adresse','département'];
   
   medecinSubscription: Subscription;
-  constructor(private medecinService: MainService){}
+  constructor(private mainService: MainService){}
   ngOnInit(){
-    this.medecinSubscription = this.medecinService.medecinSubject.subscribe(
+    this.medecinSubscription = this.mainService.medecinSubject.subscribe(
       (medecins: any[]) => {
         this.medecins = medecins;
       }
     );
-    this.medecinService.getmedecinFromServer(this.nomMedecin);
+    this.mainService.getmedecinFromServer(this.nomMedecin);
     this.rechercheMedecin(event);
 
   }
 
   rechercheMedecin(event) {
     if (!event) {
-      this.medecinService.getmedecinFromServer(this.nomMedecin);
+      this.mainService.getmedecinFromServer(this.nomMedecin);
     }
 
     if (event) {
       this.nomMedecin = event.target.value;
-      this.medecinService.getmedecinFromServer(this.nomMedecin);
+      this.mainService.getmedecinFromServer(this.nomMedecin);
     }
   }
 
