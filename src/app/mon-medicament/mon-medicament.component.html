@@ -1,3 +1,25 @@
-<h1>Voici la liste des médicaments</h1>
-  <app-mon-medicament *ngFor="let medicament of medicaments" [mNomCommercial]="medicament.nomCommercial" [mFamille]="medicament.idFamille" [mComposition]="medicament.composition" [mEffets]="medicament.effets" [mContreIndications]="medicament.conTreIndications"></app-mon-medicament>
-<button (click)= 'showMedicament()'>Afficher les médicaments</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="md-form">
+        <input type="text"class="form-control" id="search" placeholder="Rechercher un nom de médecin"/>
+      </div>
+    </div>
+  </div>
+    <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
+          </tr>
+        </thead>
+        <tbody *ngFor= "let medicament of medicaments">
+          <td>{{medicament.nom}} </td>
+          <td>{{medicament.prenom}} </td>
+          <td>{{medicament.tel}} </td>
+          <td>{{medicament.adresse}} </td>
+          <td>{{medicament.departement}} </td>
+      </tbody>
+    </table>
+  </div>
+</div>

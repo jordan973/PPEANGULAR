@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MedicamentService } from '../services/MedicamentService';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mon-medicament',
@@ -7,20 +8,21 @@ import { MedicamentService } from '../services/MedicamentService';
   styleUrls: ['./mon-medicament.component.css']
 })
 export class MonMedicamentComponent implements OnInit {
-  @Input() mNomCommercial: string;
-  @Input() mFamille: string;
-  @Input() mComposition: string;
-  @Input() mEffets: string;
-  @Input() mContreIndications: string;
-  medicaments: any[];
 
+  medicaments: any[];
+  headElements = ['nom','prenom','téléphone','adresse','département'];
+
+  medicamentSubscription: Subscription;
   constructor(private medicamentService: MedicamentService){}
 
-  ngOnInit(): void {
-  }
-
-  showMedicament(){
+  ngOnInit(){
+    this.medicamentSubscription = this.medicamentService.medicamentSubject.subscribe(
+      (medicaments: any[]) => {
+        this.medicaments = medicaments;
+      }
+    );
     this.medicamentService.getMedicamentFromServer();
+
   }
 
 }
