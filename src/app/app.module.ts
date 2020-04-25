@@ -9,7 +9,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AjouterRapportComponent } from './ajouter-rapport/ajouter-rapport.component';
-import { VoirMedicamentComponent } from './voir-medicament/voir-medicament.component';
 import { MonVisiteurComponent } from './mon-visiteur/mon-visiteur.component';
 import { MonMedicamentComponent } from './mon-medicament/mon-medicament.component';
 import { MonMedecinComponent } from './mon-medecin/mon-medecin.component';
@@ -40,7 +39,6 @@ const appRoutes : Routes = [
   declarations: [
     AppComponent,
     AjouterRapportComponent,
-    VoirMedicamentComponent,
     MonVisiteurComponent,
     MonMedicamentComponent,
     MonMedecinComponent,

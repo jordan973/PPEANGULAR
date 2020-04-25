@@ -36,6 +36,7 @@ export class AuthService{
   
   signOut(){
     this.isAuth = false;
+    this.user = [];
   }
 
   emitUserSuject(){

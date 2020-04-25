@@ -10,6 +10,9 @@ export class MainService{
     medecins : any[];
 
     rapportSubject = new Subject<any[]>();
+    nbRapportSubject = new Subject<any[]>();
+
+    maxRapport: any;
     unRapport : any[];
     mesRapports = [];
 
@@ -24,6 +27,9 @@ export class MainService{
     emitRapportSubject(){
         this.rapportSubject.next(this.mesRapports.slice());
     }
+    emitNbRapport(){
+        this.nbRapportSubject.next(this.maxRapport.slice());
+    }
 
     // Récupère un médecin en fonction de son nom
     getmedecinFromServer(nom){
@@ -34,11 +40,23 @@ export class MainService{
             }
         )
     }
+    getmedecinFromServerId(id){
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id='+id).subscribe(
+            (reponse) => {
+                this.medecins = (reponse);
+                this.emitmedecinSubject();
+            }
+        )
+    }
 
     getLesRapports(){
+        this.mesRapports = [];
         this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id3').subscribe(
             (reponse) => {
                 let i = 0;
+                let maxID = reponse.length -1;
+                this.maxRapport = (reponse[maxID].id);
+                this.emitNbRapport();
                 for(i; i<reponse.length; i++){
                     this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id6='+reponse[i].id).subscribe(
                         (reponse) => {
@@ -56,11 +74,17 @@ export class MainService{
         )
     }
 
+
     // Ajoute un rapport avec les informations passés en paramètres
     ajoutRapport(date,motif,bilan,idVisiteur,idMedecin) {
         return new Promise((resolve, reject) => {
-            this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?ajoutRapport='+date+"&"+motif+"&"+bilan+"&"+idVisiteur+"&"+idMedecin).subscribe();
-            resolve("L'ajout dans la base de donnée à bien fonctionné");
+            this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?addRapport=&date='+date+'&motif='+motif+'&bilan='+bilan+'&idVisiteur='+idVisiteur+'&idMedecin='+idMedecin).subscribe();
+            resolve("L'ajout du nouveau rapport à bien été éffectué !");
+        });
+    }
+    ajoutOffrirMedoc(idRapport2,idMedicament,quantite){
+        return new Promise((resolve,reject) =>{
+            this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?addOffrir=&idRapport2='+idRapport2+'&idMedicament='+idMedicament+'&quantite='+quantite).subscribe();
         });
     }
 }

@@ -11,7 +11,7 @@ export class MonMedicamentComponent implements OnInit {
 
   medicaments: any[];
   headElements = ['id','nomCommercial','idFamille','composition','effets','contreIndications'];
-
+  nomMedicament = '';
   medicamentSubscription: Subscription;
   constructor(private medicamentService: MedicamentService){}
 
@@ -21,7 +21,7 @@ export class MonMedicamentComponent implements OnInit {
         this.medicaments = medicaments;
       }
     );
-    this.medicamentService.getMedicamentFromServer();
+    this.medicamentService.getMedicamentFromServer(this.nomMedicament);
 
   }
 

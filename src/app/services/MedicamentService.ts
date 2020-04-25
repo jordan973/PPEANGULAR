@@ -16,8 +16,8 @@ export class MedicamentService{
     }
 
 
-    getMedicamentFromServer(){
-        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?nomMed').subscribe(
+    getMedicamentFromServer(nomMedicament){
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?nomMed'+nomMedicament).subscribe(
             (reponse) => {
                 this.medicaments = reponse;
                 this.emitMedicamentSubject();
