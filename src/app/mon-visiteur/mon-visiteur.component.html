@@ -3,18 +3,20 @@
         <h2>Mes rapports de visites</h2>
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <button (click)="modifierRapport()" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Modifier un rapport</button>
-        </div>
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <button (click)="ajouterRapport()" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un rapport</button>
         </div>
     </div>
     <app-ajouter-rapport *ngIf="formAjoutRapport"></app-ajouter-rapport>
     <app-modifier-rapport *ngIf="formModifierRapport"></app-modifier-rapport>
-    <button class="btn btn-danger" *ngIf="formModifierRapport || formAjoutRapport" (click)="annuler()">Retour à la liste</button>
+    <div class="col-md-12" style="margin-top: 35px;">
+      <button class="btn btn-danger" *ngIf="formModifierRapport || formAjoutRapport" (click)="annuler()">Retour à la liste</button>
+    </div>
     <div class="row" *ngIf="!formAjoutRapport && !formModifierRapport">
         <div class="col-md-12">
+          <label for="date">Afficher les rapports en fonction de la date</label><br/>
+          <input type="date" id="date" class="form-control" (change)="getRapportDate($event)">
+          
             <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
                 <table class="table">
                   <thead class="thead-dark">
@@ -23,12 +25,11 @@
                     </tr>
                   </thead>
                   <tbody *ngFor= "let rapport of rapports">
-                    <td>{{rapport[0].id}} </td>
-                    <td>{{rapport[0].date}} </td>
-                    <td>{{rapport[0].motif}} </td>
-                    <td>{{rapport[0].bilan}} </td>
-                    <td>{{rapport[0].idVisiteur}} </td>
-                    <td>{{rapport[0].idMedecin}} </td>
+                    <td>{{rapport.id}} </td>
+                    <td>{{rapport.date}} </td>
+                    <td>{{rapport.motif}} </td>
+                    <td>{{rapport.bilan}} </td>
+                    <td><button (click)="modifierRapport(rapport.id)"><i class="glyphicon glyphicon-pencil" ></i></button></td>
                   </tbody>
               </table>
             </div>

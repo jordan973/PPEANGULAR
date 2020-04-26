@@ -38,7 +38,7 @@
                 </div>
     
                 <div class="col-md-6" style="margin-top: 35px;">
-                    <input type="button" name="medocOffert" (click)="formMedocOffert()" value='Médicaments offerts'/>
+                    <input class="btn btn-secondary" type="button" name="medocOffert" (click)="formMedocOffert()" value='Médicaments offerts'/>
                 </div>
             </div>
             <div class="form-group" *ngIf="!formMedoc">
@@ -57,7 +57,7 @@
                                   <tbody *ngFor= "let medoc of medocs">
                                     <td>{{medoc.idMedicament}}</td>
                                     <td>{{medoc.qte}}</td>
-                                    <td><input type="button" (click)="supprimerMedoc(medoc.idMedicament,medoc.qte)" value="Supprimer"/></td>
+                                    <td><button (click)="supprimerMedoc(medoc.idMedicament,medoc.qte)" style="color: red;"><i class="glyphicon glyphicon-trash"></i></button></td>
                                   </tbody>
                               </table>
                             </div>
@@ -75,8 +75,9 @@
                     </div>
                     <div class="form-group">
                         <label for="qte">Indiquer le nombre d'exemplaires offerts :</label>
-                        <input id="qte" formControlName="qte" type="range" min=0 max=5 value=0 data-highlight="true" oninput="qteNb.value = qte.value"/>
-                        <output name="qteNb" id="qteNb">0</output>
+                        <input id="qte"formControlName="qte" type="range" min=0 max=5 value=0 data-highlight="true" onInput="qteNb.value = qte.value"/>
+                        <output name="qteNb" id="qteNb" value=0 >0</output>
+                        <input type="button" id="enregisterMedoc" class="btn btn-primary" (click)="ajoutMedoc()" value="Enregistrer le médicament"/>
                     </div>     
                 </div>
             </div>

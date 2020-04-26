@@ -13,7 +13,7 @@ export class MonVisiteurComponent implements OnInit {
   rapports : any[];
   formAjoutRapport = false;
   formModifierRapport = false;  
-  headElements = ['N° Rapport','Date','Motif','Bilan','idV','idM'];
+  headElements = ['N° Rapport','Date','Motif','Bilan','Modifier'];
 
   rapportSubscription: Subscription;
 
@@ -39,8 +39,12 @@ export class MonVisiteurComponent implements OnInit {
     this.formAjoutRapport = true;
     this.formModifierRapport = false;
   }
-  modifierRapport(){
+  modifierRapport(idRapport){
     this.formModifierRapport = true;
     this.formAjoutRapport = false;
+  }
+
+  getRapportDate(event){
+    this.mainService.getLesRapportsDate(event.target.value);
   }
 }

@@ -61,15 +61,32 @@ export class MainService{
                     this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id6='+reponse[i].id).subscribe(
                         (reponse) => {
                             let idV = this.authService.user;
-    
+                            let i = 0;
                             if(idV[0].id === reponse[0].idVisiteur){
-                                this.unRapport = (reponse);
+                                this.unRapport = (reponse[i]);
                                 this.mesRapports.push(this.unRapport);
                                 this.emitRapportSubject();
                             }
                         }
                     ) 
                 }
+            }
+        )
+    }
+
+    getLesRapportsDate(date){
+        let idV = this.authService.user;
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id5=&dateVisite='+date+'&id5='+idV[0].id).subscribe(
+            (reponse) =>{
+                this.mesRapports = [];
+                for(let i = 0;i < reponse.length; i ++){
+                    this.unRapport = (reponse[i]);
+                    this.mesRapports.push(this.unRapport);
+                }
+                // this.unRapport = (reponse);
+                // this.mesRapports.push(this.unRapport);
+                this.emitRapportSubject();    
+
             }
         )
     }

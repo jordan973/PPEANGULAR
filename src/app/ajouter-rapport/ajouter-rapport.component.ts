@@ -118,10 +118,13 @@ export class AjouterRapportComponent  {
     {
       this.mainService.ajoutOffrirMedoc(this.medocs[i].idRapport2,this.medocs[i].idMedicament,this.medocs[i].qte).then(error=>{
         console.log('medicament offert ajouté');
+
       });
     };
+    this.router.navigate(['/accueil']);
+    alert("Le rapport a bien été ajouté");
 
-    this.router.navigate(['mes-visites']);
+
 
   }
 
@@ -130,15 +133,17 @@ export class AjouterRapportComponent  {
       this.formMedoc = false;
     }
     else{
-      const formValue = this.ajoutForm.value;
+      this.formMedoc = true;
+    }
+  }
+  ajoutMedoc(){
+    const formValue = this.ajoutForm.value;
       const qte = formValue.qte;
       const idMedicament = formValue.idMedicament;
       let idRapport2 = Number(this.maxId) + 1;
       console.log("idRapport2 = "+idRapport2);
       this.medocs.push({idRapport2,idMedicament, qte});
-    }
   }
-
   supprimerMedoc(idMedoc, qte){
     let idx = this.medocs.indexOf(idMedoc,qte);
     this.medocs.splice(idx);
