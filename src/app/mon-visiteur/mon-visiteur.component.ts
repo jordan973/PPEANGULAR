@@ -33,18 +33,22 @@ export class MonVisiteurComponent implements OnInit {
   annuler(){
     this.formAjoutRapport = false;
     this.formModifierRapport = false;
+    this.mainService.getLesRapports();
+
   }
 
   ajouterRapport(){
     this.formAjoutRapport = true;
     this.formModifierRapport = false;
   }
-  modifierRapport(idRapport){
+  modifierRapport(idRapport, date, motif, bilan, nom, prenom){
     this.formModifierRapport = true;
     this.formAjoutRapport = false;
+    this.mainService.modfiRapport = [{idRapport,date,motif,bilan,nom,prenom}];
   }
 
   getRapportDate(event){
-    this.mainService.getLesRapportsDate(event.target.value);
+    let idRapport= "";
+    this.mainService.getLesRapportsDate(event.target.value, idRapport);
   }
 }

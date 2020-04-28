@@ -1,6 +1,6 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, empty } from 'rxjs';
 import { AuthService } from './auth.service';
 
 
@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
 export class MainService{
     medecinSubject = new Subject<any[]>();
     medecins : any[];
+    modfiRapport = [];
 
     rapportSubject = new Subject<any[]>();
     nbRapportSubject = new Subject<any[]>();
@@ -74,23 +75,37 @@ export class MainService{
         )
     }
 
-    getLesRapportsDate(date){
+    getLesRapportsDate(date, idRapport){
         let idV = this.authService.user;
         this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?id5=&dateVisite='+date+'&id5='+idV[0].id).subscribe(
             (reponse) =>{
                 this.mesRapports = [];
                 for(let i = 0;i < reponse.length; i ++){
+                    if(!empty(idRapport) || idRapport === reponse[i].id){
+                        this.unRapport = reponse[i];
+                    }
                     this.unRapport = (reponse[i]);
                     this.mesRapports.push(this.unRapport);
                 }
-                // this.unRapport = (reponse);
-                // this.mesRapports.push(this.unRapport);
                 this.emitRapportSubject();    
 
             }
         )
     }
 
+    modifierRapport(idRapport3,date,motif,bilan,idMedecin){
+        return new Promise((resolve, reject) => {
+            console.log(idRapport3);
+            console.log(date);
+
+            console.log(motif);
+            console.log(bilan);
+            console.log(idMedecin);
+
+            this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?idRapport3=&idRapport3='+idRapport3+'&date='+date+'&motif='+motif+'&bilan='+bilan+'&idMedecin='+idMedecin).subscribe();
+            resolve("Modification bien été éffectué !");
+        });
+    }
 
     // Ajoute un rapport avec les informations passés en paramètres
     ajoutRapport(date,motif,bilan,idVisiteur,idMedecin) {
