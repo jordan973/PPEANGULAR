@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="md-form">
+          <input type="text"class="form-control" id="search" (keyup)="rechercheMedicament($event)" placeholder="Rechercher un nom de médicament"/>
+        </div>
+      </div>
+    </div>
+      <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
+            </tr>
+          </thead>
+          <tbody *ngFor= "let medicament of medicaments; let i = index">
+           
+              <td>{{medicament.nomCommercial}}</td>
+              <td>{{medicament.composition}} </td>
+              <td>{{medicament.effets}} </td>
+              <td>{{medicament.contreIndications}} </td>
+              <button class="list-group-item" (click)= "onView(i)">Détails</button>   
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

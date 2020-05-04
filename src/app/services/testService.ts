@@ -4,23 +4,23 @@ import { Subject } from 'rxjs';
 
 
 @Injectable()
-export class MainService{
-    medecinSubject = new Subject<any[]>();
-     medecins : any[];
+export class testService{
+    medicamentSubject = new Subject<any[]>();
+     medicaments : any[];
 
     constructor(private httpClient: HttpClient){}
 
 
-    emitmedecinSubject(){
-        this.medecinSubject.next(this.medecins.slice());
+    emitmedicamentSubject(){
+        this.medicamentSubject.next(this.medicaments.slice());
     }
 
     // Récupère un médecin en fonction de son nom
-    getmedecinFromServer(nom){
-        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?noms='+nom).subscribe(
+    getmedicamentFromServer(nom){
+        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?nomMed='+nom).subscribe(
             (reponse) => {
-                this.medecins = (reponse);
-                this.emitmedecinSubject();
+                this.medicaments = (reponse);
+                this.emitmedicamentSubject();
             }
         )
     }
