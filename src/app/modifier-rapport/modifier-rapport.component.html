@@ -1,2 +1,32 @@
-<button routerLink="mes-visites"></button>
-<h2>En développement</h2>
+<div class="row">
+    <div class="col" *ngFor='let rapport of rapport'>
+        <h2>Modifier le rapport N° {{rapport.idRapport}}</h2><br/>
+        <p>Rapport datant du {{rapport.date}}</p><br/>
+        <p>Médecin : {{rapport.nom}} {{rapport.prenom}}</p>
+    </div>
+    <div class="col">
+        <form [formGroup]="modifForm" (ngSubmit)="onSubmitForm()">
+
+            <div class="form-group">
+                <div class="col-md-6" style="margin-top: 35px;">
+                    <div class="form-group" *ngFor='let rapport of rapport'>
+                        <label for="motif">Motif</label>
+                        
+                        <textarea formControlName="motif" id="motif" name="motif" class="form-control" style="height: 120px;" [(ngModel)]="rapport.motif"></textarea>
+                    </div>
+                </div>
+    
+                <div class="col-md-6" style="margin-top: 35px;">
+                    <div class="form-group" *ngFor='let rapport of rapport'>
+                        <label for="bilan">Bilan</label>
+                        <textarea formControlName="bilan" id="bilan" name="bilan" class="form-control" style="height: 120px;" [(ngModel)]="rapport.bilan"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button name="valider" type="submit" class="btn btn-success">Modifier</button>
+            </div>
+        </form>
+
+    </div>
+</div>

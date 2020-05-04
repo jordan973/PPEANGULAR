@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MedicamentService } from '../services/MedicamentService';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mon-medicament',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MonMedicamentComponent implements OnInit {
 
-  constructor() { }
+  medicaments: any[];
+  headElements = ['id','nomCommercial','idFamille','composition','effets','contreIndications'];
+  nomMedicament = '';
+  medicamentSubscription: Subscription;
+  constructor(private medicamentService: MedicamentService){}
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.medicamentSubscription = this.medicamentService.medicamentSubject.subscribe(
+      (medicaments: any[]) => {
+        this.medicaments = medicaments;
+      }
+    );
+    this.medicamentService.getMedicamentFromServer(this.nomMedicament);
+
   }
 
 }

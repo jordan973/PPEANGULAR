@@ -3,13 +3,36 @@
         <h2>Mes rapports de visites</h2>
     </div>
     <div class="row">
-        <div class="col-sm-6">
-            <button routerLink="modifier-rapport" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Modifier un rapport</button>
+        <div class="col-sm-12">
+            <button (click)="ajouterRapport()" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un rapport</button>
         </div>
-        <div class="col-sm-6">
-            <a routerLink="ajouter-rapport">
-                <button routerLink="ajouter-rapport" class="btn btn-primary"><span class="glyphicon glyphicon-plus-sign"></span> Ajouter un rapport</button>
-            </a> 
+    </div>
+    <app-ajouter-rapport *ngIf="formAjoutRapport"></app-ajouter-rapport>
+    <app-modifier-rapport *ngIf="formModifierRapport"></app-modifier-rapport>
+    <div class="col-md-12" style="margin-top: 35px;">
+      <button class="btn btn-danger" *ngIf="formModifierRapport || formAjoutRapport" (click)="annuler()">Retour à la liste</button>
+    </div>
+    <div class="row" *ngIf="!formAjoutRapport && !formModifierRapport">
+        <div class="col-md-12">
+          <label for="date">Afficher les rapports en fonction de la date</label><br/>
+          <input type="date" id="date" class="form-control" (change)="getRapportDate($event)">
+          
+            <div class="tableau" style="margin-top:65px;height:350px; overflow: scroll;">
+                <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngFor= "let rapport of rapports">
+                    <td>{{rapport.id}} </td>
+                    <td>{{rapport.date}} </td>
+                    <td>{{rapport.motif}} </td>
+                    <td>{{rapport.bilan}} </td>
+                    <td><button (click)="modifierRapport(rapport.id, rapport.date, rapport.motif, rapport.bilan, rapport.nom, rapport.prenom)"><i class="glyphicon glyphicon-pencil" ></i></button></td>
+                  </tbody>
+              </table>
+            </div>
         </div>
     </div>
 </div>
