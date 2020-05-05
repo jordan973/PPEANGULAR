@@ -13,15 +13,32 @@
               <th *ngFor = "let head of headElements;">{{head | titlecase}}</th>
             </tr>
           </thead>
-          <tbody *ngFor= "let medicament of medicaments; let i = index">
-           
-              <td>{{medicament.nomCommercial}}</td>
-              <td>{{medicament.composition}} </td>
-              <td>{{medicament.effets}} </td>
-              <td>{{medicament.contreIndications}} </td>
-              <button class="list-group-item" (click)= "onView(i)">Détails</button>   
+          <tbody>
+            <tr *ngFor= "let medicament of medicaments">
+            <td>{{medicament.nomCommercial}}</td>
+            <td>{{medicament.composition}} </td>
+            <td>{{medicament.effets}}</td>
+            <td>{{medicament.contreIndications}} </td>
+            <td><a (click)="afficherFamille(medicament)"><img width="65" src="../../assets/images/eyes.jpg"></a></td>
+          </tr>
         </tbody>
       </table>
     </div>
-  </div>
   
+  <div class="row">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Libellé</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor= "let famille of familles">
+          <td>{{famille.id}} </td>
+          <td>{{famille.libelle}} </td>
+          </tr>
+          </tbody>
+          </table>
+        </div>
+</div>

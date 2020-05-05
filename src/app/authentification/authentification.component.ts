@@ -11,7 +11,6 @@ import { User } from "../models/user.model";
 })
 export class AuthentificationComponent implements OnInit {
   loginForm: FormGroup;
-  private user: User[];  
   isAuth: boolean;
   error;
 
@@ -36,7 +35,7 @@ export class AuthentificationComponent implements OnInit {
     
     this.authService.getUserInfo(formValue.login, formValue.mdp).then(user =>{
       this.error = user;
-      console.log('login ='+ user);
+      // console.log('login ='+ user);
       this.isAuth = this.authService.isAuth;
       this.route.navigate(['accueil']);
     });

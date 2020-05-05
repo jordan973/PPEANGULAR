@@ -7,7 +7,7 @@
       <li routerLinkActive="active"><a routerLink="medicament">Médicament</a></li>
     </ul>
     <ul class="nav navbar-right">
-      <button class="btn btn-danger" *ngIf="!authStatus" (click)="onSignOut()">Se déconnecter</button>      
+      <button class="btn btn-danger" *ngIf="authStatus" (click)="onSignOut()">Se déconnecter</button>      
     </ul>
   </div>
 </nav>

@@ -6,21 +6,23 @@ import { Subject } from 'rxjs';
 @Injectable()
 export class testService{
     medicamentSubject = new Subject<any[]>();
-     medicaments : any[];
+     medicaments : [];
+    familleSubject = new Subject<any[]>();
+     familles = [];
 
     constructor(private httpClient: HttpClient){}
 
-
-    emitmedicamentSubject(){
+    emitSubject(){
         this.medicamentSubject.next(this.medicaments.slice());
+        this.familleSubject.next(this.familles.slice());
     }
 
     // Récupère un médecin en fonction de son nom
     getmedicamentFromServer(nom){
-        this.httpClient.get<any[]>('https://webserv-gr4.sio-carriat.com/gsbapi/?nomMed='+nom).subscribe(
+        this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?nomMed='+nom).subscribe(
             (reponse) => {
                 this.medicaments = (reponse);
-                this.emitmedicamentSubject();
+                this.emitSubject();
             }
         )
     }
@@ -32,4 +34,14 @@ export class testService{
     //         resolve("L'ajout dans la base de donnée à bien fonctionné");
     //     });
     // }
+
+
+    getFamilleFromServer(idMedicament){
+        this.httpClient.get<any>('https://webserv-gr4.sio-carriat.com/gsbapi/?idFam='+idMedicament).subscribe(
+            (reponse) => {
+                this.familles = reponse;
+                this.emitSubject();
+            }
+        )
+    }
 }

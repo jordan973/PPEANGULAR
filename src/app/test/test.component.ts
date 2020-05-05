@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { MainService } from '../services/main.service';
 import { testService } from '../services/testService';
 import { Router } from '@angular/router';
 
@@ -12,19 +11,29 @@ import { Router } from '@angular/router';
 export class TestComponent implements OnInit {
 
   medicaments: any[];
+  familles: any[];
   nomMedoc = '';
+  familleSubscription : Subscription;
   headElements = ['nom Commercial','Composition','effets','contre Indications'];
   
   medicamentSubscription: Subscription;
-  constructor(private medicamentService: testService, private router: Router){}
+  constructor(private medicamentService: testService){}
   ngOnInit(){
+    this.medicamentService.getmedicamentFromServer(this.nomMedoc);
     this.medicamentSubscription = this.medicamentService.medicamentSubject.subscribe(
       (medicaments: any[]) => {
         this.medicaments = medicaments;
+
       }
     );
-    this.medicamentService.getmedicamentFromServer(this.nomMedoc);
+      this.familleSubscription = this.medicamentService.familleSubject.subscribe(
+      (familles : any[]) => {
+        this.familles = familles;
+      }
+    );
     this.rechercheMedicament(event);
+    this.medicamentService.emitSubject();
+
 
   }
 
@@ -39,9 +48,11 @@ export class TestComponent implements OnInit {
     }
   }
 
-  onView(id: number)
-  {
-    this.router.navigate(['/medicament', 'details-medoc', id]);
-  }
+  afficherFamille(med : any){
+    this.medicamentService.getFamilleFromServer(med.idFamille);
 
+  }
 }
+
+
+
